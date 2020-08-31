@@ -15,9 +15,21 @@ export default function CourseForm({ courseAdded }) {
 
     const submitCourse = async (e) => {
         e.preventDefault();
-        //TODO: Create the course
+        try {
+            const res = await fetch('/api/courses', { 
+                method: 'POST',
+                body: JSON.stringify({
+                    name,
+                    link,
+                    tags,
+                }),
+            });
         resetForm();
         courseAdded();
+        } catch (err) {
+            console.error(err);
+        }
+        console.log(name, link);
     };
 
     return (

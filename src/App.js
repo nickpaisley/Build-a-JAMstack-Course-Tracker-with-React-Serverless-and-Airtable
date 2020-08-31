@@ -8,6 +8,14 @@ function App() {
 
     const loadCourses = async () => {
         //TODO:load the courses
+        try {
+            const res = await fetch('/api/courses');
+            const courses = await res.json();
+            setCourses(courses);
+        } catch (error) {
+            console.error(error);
+
+        }
     };
 
     useEffect(() => {
